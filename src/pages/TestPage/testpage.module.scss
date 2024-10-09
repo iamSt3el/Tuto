@@ -1,0 +1,177 @@
+// TestPage.module.scss
+
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$background-color: #ecf0f1;
+$text-color: #2c3e50;
+$correct-color: #27ae60;
+$incorrect-color: #e74c3c;
+
+.container {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: $background-color;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: $primary-color;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+.cardHeader {
+  background-color: $primary-color;
+  padding: 1.5rem;
+  color: white;
+}
+
+.questionTitle {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.5rem;
+  opacity: 0.8;
+}
+
+.question {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.cardContent {
+  padding: 1.5rem;
+}
+
+.optionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.optionButton {
+  padding: 1rem;
+  text-align: left;
+  border: 2px solid rgba($primary-color, 0.2);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  background-color: white;
+  color: $text-color;
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background-color: rgba($primary-color, 0.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+.correctAnswer {
+  @extend .optionButton;
+  background-color: rgba($correct-color, 0.1);
+  border-color: $correct-color;
+  color: $correct-color;
+}
+
+.incorrectAnswer {
+  @extend .optionButton;
+  background-color: rgba($incorrect-color, 0.1);
+  border-color: $incorrect-color;
+  color: $incorrect-color;
+}
+
+.icon {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.explanation {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgba($primary-color, 0.05);
+  border-radius: 0.5rem;
+  font-style: italic;
+}
+
+.resultsCard {
+  background-color: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.resultsTitle {
+  font-size: 2rem;
+  color: $primary-color;
+  margin: 0 0 1rem;
+}
+
+.scoreContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.scoreIcon {
+  color: $secondary-color;
+  width: 3rem;
+  height: 3rem;
+  margin-right: 1rem;
+}
+
+.resultsScore {
+  font-size: 1.5rem;
+  color: $text-color;
+  margin: 0;
+}
+
+.encouragement {
+  font-size: 1.25rem;
+  color: $text-color;
+  margin: 0;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
+  color: $primary-color;
+}
+
+@media (max-width: 640px) {
+  .optionsGrid {
+    grid-template-columns: 1fr;
+  }
+}
