@@ -2,926 +2,966 @@ import React, { useState, useEffect } from 'react';
 import { CheckCircle, XCircle, Award } from 'lucide-react';
 import styles from './testpage.module.scss';
 
-const testData = [
+const testData = 
+[
+  {
+    "question": "What is the main objective of K-means clustering algorithm?",
+    "options": [
+      "To classify labeled data points",
+      "To minimize the within-cluster sum of squares (inertia)",
+      "To maximize the distance between clusters",
+      "To predict future data points"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "question": "In K-means clustering, what does the 'elbow method' help determine?",
+    "options": [
+      "The convergence rate of the algorithm",
+      "The optimal number of clusters (K)",
+      "The size of each cluster",
+      "The distance metric to use"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "question": "What is the time complexity of the K-means algorithm for 'n' samples, 'k' clusters, and 'i' iterations?",
+    "options": [
+      "O(n)",
+      "O(nki)",
+      "O(n^2)",
+      "O(k^2)"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "question": "Which of the following best describes anomaly detection?",
+    "options": [
+      "A supervised learning technique for classification",
+      "A method to identify patterns in labeled data",
+      "A technique to identify data points that deviate significantly from the norm",
+      "A clustering algorithm for balanced datasets"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "question": "What is the key characteristic of DBSCAN clustering compared to K-means?",
+    "options": [
+      "It requires specifying the number of clusters beforehand",
+      "It can only form spherical clusters",
+      "It can identify clusters of arbitrary shapes and handle noise",
+      "It always produces balanced clusters"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "question": "What range of values does the Silhouette Score typically have?",
+    "options": [
+      "0 to 1",
+      "-1 to 1",
+      "0 to infinity",
+      "-infinity to +infinity"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "question": "What does a high Davies-Bouldin Index indicate?",
+    "options": [
+      "Good clustering performance",
+      "Poor clustering performance",
+      "Optimal number of clusters",
+      "High data dimensionality"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "question": "In reinforcement learning, what is a policy?",
+    "options": [
+      "A set of training data",
+      "The reward function",
+      "A mapping from states to actions",
+      "The learning rate of the algorithm"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "question": "What is the purpose of the ε-greedy policy in Q-learning?",
+    "options": [
+      "To maximize immediate rewards",
+      "To balance exploration and exploitation",
+      "To minimize computational complexity",
+      "To ensure convergence"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "question": "What is the key difference between content-based and collaborative filtering?",
+    "options": [
+      "Content-based uses user ratings, while collaborative uses item features",
+      "Collaborative uses user behavior patterns, while content-based uses item features",
+      "Content-based is supervised, while collaborative is unsupervised",
+      "There is no difference between them"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "question": "What is the Bellman Equation used for in reinforcement learning?",
+    "options": [
+      "Feature selection",
+      "Policy evaluation",
+      "Calculating the optimal value function",
+      "Determining the learning rate"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "question": "Which metric is most appropriate for evaluating clustering performance when true labels are available?",
+    "options": [
+      "Silhouette Score",
+      "Davies-Bouldin Index",
+      "Adjusted Rand Index",
+      "Dunn Index"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "question": "What is the main advantage of hierarchical clustering over K-means?",
+    "options": [
+      "Lower computational complexity",
+      "No need to specify number of clusters beforehand",
+      "Better handling of outliers",
+      "Faster convergence"
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "question": "In Q-learning, what does the Q-value represent?",
+    "options": [
+      "The immediate reward",
+      "The optimal policy",
+      "The expected future rewards for taking an action in a state",
+      "The learning rate"
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "question": "What is the primary challenge addressed by mean normalization in recommender systems?",
+    "options": [
+      "Cold start problem",
+      "Different rating scales among users",
+      "Computational complexity",
+      "Feature selection"
+    ],
+    "correctAnswer": 1
+  },
     {
-      "question": "What is the time complexity of the Merge Sort algorithm?",
+      "question": "What is the primary assumption of the Gaussian distribution in anomaly detection?",
       "options": [
-        "O(n)",
-        "O(n log n)",
-        "O(n^2)",
-        "O(2^n)"
+        "The data is always normally distributed",
+        "Features are independent of each other",
+        "Outliers follow a normal distribution",
+        "The mean is always zero"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Which of the following is NOT a characteristic of a greedy algorithm?",
+      "question": "In agglomerative clustering, what does the 'single linkage' criterion measure?",
       "options": [
-        "It makes the locally optimal choice at each step",
-        "It always leads to the globally optimal solution",
-        "It never reconsiders its choices",
-        "It is often used for optimization problems"
+        "The average distance between all points in two clusters",
+        "The maximum distance between any two points in different clusters",
+        "The minimum distance between any two points in different clusters",
+        "The distance between cluster centroids"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What is the main limitation of the Dunn Index as a clustering metric?",
+      "options": [
+        "It only works with K-means clustering",
+        "It is sensitive to noise and outliers",
+        "It can only compare two clusters at a time",
+        "It requires true labels"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "What is the primary goal of dynamic programming?",
+      "question": "Which parameter in DBSCAN determines the minimum cluster size?",
       "options": [
-        "To sort data efficiently",
-        "To search data quickly",
-        "To optimize recursive algorithms by storing intermediate results",
-        "To manage memory allocation"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "Which of the following problems is NP-complete?",
-      "options": [
-        "Finding the shortest path in a graph",
-        "Sorting an array",
-        "The Traveling Salesman Problem (decision version)",
-        "Binary search in a sorted array"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What is the time complexity of the best-known algorithm for the boolean matrix multiplication problem?",
-      "options": [
-        "O(n^2)",
-        "O(n^2.37)",
-        "O(n^3)",
-        "O(n log n)"
+        "epsilon (ε)",
+        "minPoints",
+        "radius",
+        "density"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Which of the following is true about the relationship between P and NP?",
+      "question": "What is the key difference between V-measure and NMI?",
       "options": [
-        "P is a subset of NP",
-        "NP is a subset of P",
-        "P and NP are disjoint sets",
-        "P is equal to NP"
+        "V-measure is symmetric while NMI isn't",
+        "V-measure uses entropy while NMI uses mutual information",
+        "V-measure combines homogeneity and completeness, while NMI is a single measure",
+        "V-measure requires true labels while NMI doesn't"
       ],
-      "correctAnswer": 0
+      "correctAnswer": 2
     },
     {
-      "question": "What is the main principle behind the Divide and Conquer algorithm design paradigm?",
+      "question": "In reinforcement learning, what is the discount factor γ (gamma) used for?",
       "options": [
-        "Solving the problem iteratively",
-        "Breaking the problem into smaller subproblems, solving them, and combining the results",
-        "Always choosing the locally optimal solution",
-        "Storing intermediate results to avoid redundant computations"
+        "To determine the learning rate",
+        "To weight immediate versus future rewards",
+        "To calculate the error rate",
+        "To determine the exploration rate"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Which of the following algorithms is used to find the minimum spanning tree of a graph?",
+      "question": "What is the 'mini-batch' approach in Q-learning used for?",
       "options": [
-        "Dijkstra's algorithm",
-        "Depth-First Search",
-        "Kruskal's algorithm",
-        "Floyd-Warshall algorithm"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What is the time complexity of the Knuth-Morris-Pratt (KMP) string matching algorithm?",
-      "options": [
-        "O(n + m)",
-        "O(n * m)",
-        "O(n log m)",
-        "O(n^2)"
-      ],
-      "correctAnswer": 0
-    },
-    {
-      "question": "Which of the following is NOT a property of a hash function used in cryptography?",
-      "options": [
-        "Pre-image resistance",
-        "Collision resistance",
-        "Reversibility",
-        "Second pre-image resistance"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What is the purpose of the Chinese Remainder Theorem?",
-      "options": [
-        "To find the prime factors of a number",
-        "To solve a system of linear congruences",
-        "To encrypt messages",
-        "To find the shortest path in a graph"
+        "To reduce memory requirements",
+        "To speed up training by updating on smaller subsets of experiences",
+        "To increase exploration",
+        "To improve convergence guarantee"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Which of the following sorting algorithms has the best average-case time complexity?",
+      "question": "Which of the following is NOT a common initialization method for K-means?",
       "options": [
-        "Bubble Sort",
-        "Insertion Sort",
-        "Quick Sort",
-        "Selection Sort"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What is the space complexity of the recursive implementation of the Fibonacci sequence?",
-      "options": [
-        "O(1)",
-        "O(log n)",
-        "O(n)",
-        "O(2^n)"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "Which of the following is an example of a backtracking algorithm?",
-      "options": [
-        "Breadth-First Search",
-        "Dijkstra's Algorithm",
-        "N-Queens Problem Solution",
-        "Binary Search"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What is the primary advantage of using a balanced binary search tree over a regular binary search tree?",
-      "options": [
-        "Lower space complexity",
-        "Faster insertion operations",
-        "Guaranteed O(log n) time for search, insert, and delete operations",
-        "Simpler implementation"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What is the time complexity of the Floyd-Warshall algorithm for finding all pairs shortest paths?",
-      "options": [
-        "O(V^2)",
-        "O(V^3)",
-        "O(E log V)",
-        "O(V E)"
-      ],
-      "correctAnswer": 1
-    },
-    {
-      "question": "Which data structure is most suitable for implementing a priority queue?",
-      "options": [
-        "Array",
-        "Linked List",
-        "Binary Search Tree",
-        "Heap"
+        "Random initialization",
+        "K-means++",
+        "Forgy method",
+        "DBSCAN initialization"
       ],
       "correctAnswer": 3
     },
     {
-      "question": "What is the primary purpose of the Master Theorem?",
+      "question": "What is the main advantage of soft clustering over hard clustering?",
       "options": [
-        "To sort arrays efficiently",
-        "To solve recurrence relations",
-        "To find the shortest path in a graph",
-        "To encrypt data"
+        "It's computationally less expensive",
+        "It allows points to belong to multiple clusters with different degrees",
+        "It always produces better results",
+        "It requires fewer parameters"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Which of the following is NOT a valid invariant for a red-black tree?",
+      "question": "In collaborative filtering, what is the cold start problem?",
       "options": [
-        "The root is always black",
-        "Every leaf (NIL) is black",
-        "If a node is red, then both its children are black",
-        "Every path from a node to its descendant leaves contains the same number of red nodes"
-      ],
-      "correctAnswer": 3
-    },
-    {
-      "question": "What is the time complexity of the best algorithm for matrix multiplication?",
-      "options": [
-        "O(n^2)",
-        "O(n^2.37)",
-        "O(n^3)",
-        "O(n log n)"
+        "System performance issues during initialization",
+        "Difficulty in making recommendations for new users or items",
+        "Slow convergence of the algorithm",
+        "Issues with feature scaling"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Which of the following is NOT a property of B-trees?",
+      "question": "What is the main purpose of PCA in feature selection for clustering?",
       "options": [
-        "All leaves are at the same level",
-        "A non-leaf node with k children contains k-1 keys",
-        "The root has at least two children if it is not a leaf",
-        "All nodes (including root) can have a maximum of 2 children"
-      ],
-      "correctAnswer": 3
-    },
-    {
-      "question": "What is the primary use of the Rabin-Karp algorithm?",
-      "options": [
-        "Sorting",
-        "Graph traversal",
-        "String matching",
-        "Matrix multiplication"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "Which of the following is true about the relationship between NP-hard and NP-complete problems?",
-      "options": [
-        "All NP-hard problems are NP-complete",
-        "All NP-complete problems are NP-hard",
-        "NP-hard and NP-complete are the same set of problems",
-        "NP-hard and NP-complete are disjoint sets of problems"
+        "To increase the number of features",
+        "To reduce dimensionality while preserving variance",
+        "To normalize the features",
+        "To remove outliers"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "What is the primary purpose of the Bellman-Ford algorithm?",
+      "question": "What is the relationship between homogeneity and completeness in clustering evaluation?",
       "options": [
-        "To find the minimum spanning tree",
-        "To find the shortest path in a graph with negative edge weights",
-        "To sort an array",
-        "To find the maximum flow in a network"
+        "They are always equal",
+        "They are inversely proportional",
+        "They represent different aspects of cluster quality and can trade off",
+        "They are independent measures"
+      ],
+      "correctAnswer": 2
+    },
+    {
+      "question": "In reinforcement learning, what is the difference between on-policy and off-policy learning?",
+      "options": [
+        "On-policy requires more computation",
+        "Off-policy can learn from actions not taken by the current policy",
+        "On-policy always converges faster",
+        "Off-policy requires more memory"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Which of the following is NOT a type of balanced binary search tree?",
+      "question": "What is the purpose of the Adjusted Mutual Information (AMI) score?",
       "options": [
-        "AVL tree",
-        "Red-Black tree",
-        "Splay tree",
-        "Binomial heap"
-      ],
-      "correctAnswer": 3
-    },
-    {
-      "question": "What is the time complexity of finding the kth smallest element in an unsorted array using QuickSelect algorithm?",
-      "options": [
-        "O(n)",
-        "O(n log n)",
-        "O(k log n)",
-        "O(n^2)"
-      ],
-      "correctAnswer": 0
-    },
-    {
-      "question": "Which of the following algorithms is used for topological sorting of a directed acyclic graph?",
-      "options": [
-        "Breadth-First Search",
-        "Depth-First Search",
-        "Dijkstra's Algorithm",
-        "Floyd-Warshall Algorithm"
+        "To normalize clustering results",
+        "To account for chance in mutual information scores",
+        "To compare different clustering algorithms",
+        "To measure cluster separation"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "What is the primary advantage of using a trie data structure?",
+      "question": "Which of the following is true about the Fowlkes-Mallows Index?",
       "options": [
-        "Efficient sorting of strings",
-        "Constant time complexity for insert and search operations",
-        "Space efficiency for storing large number of strings with common prefixes",
-        "Balancing of the tree structure"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "Which of the following is NOT a valid operation on a binary heap?",
-      "options": [
-        "Insert",
-        "Delete minimum",
-        "Decrease key",
-        "In-order traversal"
-      ],
-      "correctAnswer": 3
-    },
-    {
-      "question": "What is the primary purpose of the A* search algorithm?",
-      "options": [
-        "To find the shortest path in a weighted graph",
-        "To sort an array",
-        "To find the minimum spanning tree",
-        "To perform string matching"
-      ],
-      "correctAnswer": 0
-    },
-    {
-      "question": "Which of the following data structures is most suitable for implementing a cache with a Least Recently Used (LRU) eviction policy?",
-      "options": [
-        "Array",
-        "Binary Search Tree",
-        "Hash Table with Doubly Linked List",
-        "Stack"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What is the time complexity of the Union-Find algorithm with path compression and union by rank?",
-      "options": [
-        "O(n)",
-        "O(log n)",
-        "O(α(n)), where α is the inverse Ackermann function",
-        "O(1)"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "Which of the following is NOT a property of a min-heap?",
-      "options": [
-        "The root element is always the minimum",
-        "It's a complete binary tree",
-        "The left and right subtrees are also min-heaps",
-        "In-order traversal always yields a sorted sequence"
-      ],
-      "correctAnswer": 3
-    },
-    {
-      "question": "What is the primary purpose of the Bloom filter data structure?",
-      "options": [
-        "To sort large datasets",
-        "To check if an element is present in a set",
-        "To find the shortest path in a graph",
-        "To perform matrix multiplication"
+        "It only works with hierarchical clustering",
+        "It measures the similarity between two clusterings",
+        "It requires a specific number of clusters",
+        "It can't handle unbalanced clusters"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Which of the following algorithms is used to find strongly connected components in a directed graph?",
+      "question": "What is the main challenge in determining the optimal number of clusters in K-means?",
       "options": [
-        "Breadth-First Search",
-        "Depth-First Search",
-        "Kosaraju's Algorithm",
-        "Prim's Algorithm"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What is the time complexity of the best known algorithm for the integer factorization problem?",
-      "options": [
-        "O(n)",
-        "O(n log n)",
-        "O(2^(log n)^(1/3) * (log log n)^(2/3))",
-        "O(n^(1/4))"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "Which of the following is NOT a valid balancing operation for AVL trees?",
-      "options": [
-        "Left rotation",
-        "Right rotation",
-        "Left-Right rotation",
-        "Top-Down rotation"
-      ],
-      "correctAnswer": 3
-    },
-    {
-      "question": "What is the primary purpose of the Boyer-Moore majority vote algorithm?",
-      "options": [
-        "To find the majority element in an array",
-        "To sort an array",
-        "To find the shortest path in a graph",
-        "To perform string matching"
-      ],
-      "correctAnswer": 0
-    },
-    {
-      "question": "Which of the following problems is known to be in P?",
-      "options": [
-        "Boolean Satisfiability Problem (SAT)",
-        "Traveling Salesman Problem",
-        "Linear Programming",
-        "Graph Isomorphism"
-      ],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What is the primary purpose of the Fenwick Tree (Binary Indexed Tree) data structure?",
-      "options": [
-        "To perform range queries and updates on an array",
-        "To sort an array efficiently",
-        "To find the shortest path in a graph",
-        "To perform string matching"
-      ],
-      "correctAnswer": 0
-    },
-    {
-      "question": "Which of the following is NOT a property of the Fibonacci heap?",
-      "options": [
-        "Amortized O(1) time for insert and decrease-key operations",
-        "Worst-case O(log n) time for delete-min operation",
-        "Can be used to improve the asymptotic running time of Dijkstra's algorithm",
-        "Guaranteed O(1) time for all operations"
-      ],
-      "correctAnswer": 3
-    },
-    {
-      "question": "What is the primary purpose of the Z-algorithm in string matching?",
-      "options": [
-        "To find the longest palindromic substring",
-        "To compute the Z-array for efficient pattern matching",
-        "To sort strings lexicographically",
-        "To compress strings"
+        "Computational complexity",
+        "The subjective nature of what constitutes optimal clustering",
+        "Memory requirements",
+        "Algorithm convergence"
       ],
       "correctAnswer": 1
     },
     {
-      "question": "Which of the following is true about the relationship between P, NP, and NP-Complete?",
+      "question": "In content-based filtering, what is the primary source of information used for recommendations?",
       "options": [
-        "P ⊆ NP-Complete ⊆ NP",
-        "NP-Complete ⊆ P ⊆ NP",
-        "P ⊆ NP and NP-Complete ⊆ NP",
-        "NP ⊆ P and NP-Complete ⊆ P"
+        "User behavior patterns",
+        "Item features and characteristics",
+        "User ratings",
+        "Social networks"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "What is the key advantage of using mini-batch updates in reinforcement learning?",
+      "options": [
+        "Better exploration",
+        "More stable learning and reduced variance",
+        "Guaranteed convergence",
+        "Lower memory usage"
+      ],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Which clustering metric is most appropriate when clusters are expected to be of varying densities?",
+      "options": [
+        "Silhouette Score",
+        "Davies-Bouldin Index",
+        "DBSCAN-based metrics",
+        "K-means inertia"
       ],
       "correctAnswer": 2
     },
     {
-      "question": "What is the primary purpose of the Tarjan's algorithm?",
+      "question": "What is the main ethical concern with recommender systems?",
       "options": [
-        "To find strongly connected components in a directed graph",
-        "To sort an array",
-        "To find the shortest path in a graph",
-        "To perform matrix multiplication"
+        "Computational cost",
+        "Filter bubbles and echo chambers",
+        "System scalability",
+        "User interface design"
       ],
-      "correctAnswer": 0
-    },{
-        "question": "Which of the following data structures is most efficient for implementing a dictionary with fast insertion, deletion, and lookup operations?",
+      "correctAnswer": 1
+    },
+      {
+        "question": "When implementing Q-learning with neural networks, what is the purpose of using a target network?",
         "options": [
-          "Array",
-          "Linked List",
-          "Binary Search Tree",
-          "Hash Table"
+          "To reduce computational complexity",
+          "To improve exploration efficiency",
+          "To stabilize training by reducing correlation between updates",
+          "To increase the learning rate"
+        ],
+        "correctAnswer": 2
+      },
+      {
+        "question": "In hierarchical clustering, what does the cophenetic correlation coefficient measure?",
+        "options": [
+          "The optimal number of clusters",
+          "The correlation between original distances and dendrogram-derived distances",
+          "The similarity between different clustering methods",
+          "The internal cluster validity"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "question": "What is the fundamental difference between implicit and explicit feedback in recommender systems?",
+        "options": [
+          "Implicit feedback is more accurate",
+          "Explicit feedback requires user ratings while implicit feedback is derived from behavior",
+          "Implicit feedback requires more computational resources",
+          "Explicit feedback is collected automatically"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "question": "In reinforcement learning, what is the difference between model-based and model-free approaches?",
+        "options": [
+          "Model-based approaches require less memory",
+          "Model-free approaches require a complete environment model",
+          "Model-based approaches learn a model of the environment's dynamics",
+          "There is no significant difference between them"
+        ],
+        "correctAnswer": 2
+      },
+      {
+        "question": "What is the key limitation of using the elbow method for determining the optimal number of clusters?",
+        "options": [
+          "High computational cost",
+          "The 'elbow' point can be ambiguous and subjective",
+          "It only works with K-means clustering",
+          "It requires labeled data"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "question": "In DBSCAN, what is the significance of a point being classified as a 'noise point'?",
+        "options": [
+          "It belongs to multiple clusters",
+          "It doesn't have enough neighbors within epsilon distance",
+          "It's an outlier in the feature space",
+          "It's at the boundary of a cluster"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "question": "What is the primary advantage of using the Adjusted Rand Index over the regular Rand Index?",
+        "options": [
+          "Better computational efficiency",
+          "Adjustment for chance agreement",
+          "Handling of missing values",
+          "Support for hierarchical clustering"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "question": "In reinforcement learning, what is the purpose of experience replay?",
+        "options": [
+          "To reduce memory usage",
+          "To improve exploration",
+          "To break correlations in the training data and improve sample efficiency",
+          "To speed up convergence"
+        ],
+        "correctAnswer": 2
+      },
+      {
+        "question": "What is the main challenge when applying PCA for feature selection in clustering?",
+        "options": [
+          "Determining the optimal number of components to retain",
+          "Handling categorical variables",
+          "Computing the covariance matrix",
+          "Normalizing the features"
+        ],
+        "correctAnswer": 0
+      },
+      {
+        "question": "In collaborative filtering, what is the purpose of matrix factorization?",
+        "options": [
+          "To reduce storage requirements",
+          "To discover latent features that explain observed preferences",
+          "To handle missing values",
+          "To normalize user ratings"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "question": "What is the key difference between policy iteration and value iteration in reinforcement learning?",
+        "options": [
+          "Policy iteration is faster",
+          "Value iteration doesn't require a policy",
+          "Policy iteration alternates between policy evaluation and improvement",
+          "Value iteration can't handle continuous states"
+        ],
+        "correctAnswer": 2
+      },
+      {
+        "question": "When using agglomerative clustering, what is the Ward linkage criterion optimizing?",
+        "options": [
+          "Minimum distance between clusters",
+          "Maximum distance between clusters",
+          "Variance within clusters",
+          "Cluster size balance"
+        ],
+        "correctAnswer": 2
+      },
+      {
+        "question": "What is the main advantage of using soft updates (Polyak averaging) in Q-learning?",
+        "options": [
+          "Faster convergence",
+          "More stable learning process",
+          "Lower memory requirements",
+          "Better exploration"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "question": "In recommender systems, what is the purpose of incorporating temporal dynamics?",
+        "options": [
+          "To reduce computational complexity",
+          "To account for changing user preferences over time",
+          "To handle missing data",
+          "To improve storage efficiency"
+        ],
+        "correctAnswer": 1
+      },
+      {
+        "question": "What is the relationship between the learning rate and exploration rate in Q-learning?",
+        "options": [
+          "They are always equal",
+          "They are inversely proportional",
+          "Higher learning rates require lower exploration rates",
+          "They serve different purposes and are independently tuned"
         ],
         "correctAnswer": 3
       },
       {
-        "question": "What is the time complexity of the Floyd-Warshall algorithm for finding the shortest paths between all pairs of vertices in a weighted graph?",
+        "question": "When using the V-measure for clustering evaluation, what does a score of 1.0 indicate?",
         "options": [
-          "O(V^2)",
-          "O(V^3)",
-          "O(E log V)",
-          "O(V E)"
+          "Perfect random clustering",
+          "Perfect match with ground truth",
+          "Average clustering performance",
+          "Poor clustering performance"
         ],
         "correctAnswer": 1
       },
       {
-        "question": "Which of the following is NOT a typical use case for dynamic programming?",
+        "question": "What is the main drawback of using Manhattan distance in K-means clustering?",
         "options": [
-          "Finding the shortest path in an unweighted graph",
-          "Solving the knapsack problem",
-          "Computing Fibonacci numbers",
-          "Finding the longest common subsequence"
-        ],
-        "correctAnswer": 0
-      },
-      {
-        "question": "What is the primary purpose of the Cooley-Tukey FFT algorithm?",
-        "options": [
-          "To sort large datasets",
-          "To compute the Discrete Fourier Transform efficiently",
-          "To find the shortest path in a graph",
-          "To perform matrix multiplication"
-        ],
-        "correctAnswer": 1
-      },
-      {
-        "question": "Which of the following problems is known to be NP-hard?",
-        "options": [
-          "Finding a maximum matching in a bipartite graph",
-          "Determining if a number is prime",
-          "Solving linear equations",
-          "Finding a Hamiltonian cycle in a graph"
+          "Higher computational cost",
+          "Less interpretable results",
+          "Sensitivity to feature scaling",
+          "Poor performance with high-dimensional data"
         ],
         "correctAnswer": 3
       },
       {
-        "question": "What is the primary advantage of using a skip list over a balanced binary search tree?",
+        "question": "In reinforcement learning, what is the purpose of reward shaping?",
         "options": [
-          "Lower space complexity",
-          "Simpler implementation",
-          "Faster search operations",
-          "Guaranteed O(1) insertion time"
+          "To normalize rewards",
+          "To guide learning towards desired behaviors while maintaining optimal policy",
+          "To reduce computational complexity",
+          "To eliminate the need for exploration"
         ],
         "correctAnswer": 1
       },
       {
-        "question": "Which of the following is NOT a property of a B-tree?",
+        "question": "What is the primary challenge in implementing hybrid recommender systems?",
         "options": [
-          "All leaf nodes are at the same level",
-          "Non-leaf nodes store keys and pointers to child nodes",
-          "The tree is always perfectly balanced",
-          "The number of keys in a node is bounded by a minimum and maximum value"
-        ],
-        "correctAnswer": 2
-      },
-      {
-        "question": "What is the primary purpose of the Edmonds-Karp algorithm?",
-        "options": [
-          "To find the maximum flow in a flow network",
-          "To sort an array",
-          "To find the shortest path in a graph",
-          "To perform string matching"
-        ],
-        "correctAnswer": 0
-      },
-      {
-        "question": "Which of the following data structures is most suitable for implementing a LRU (Least Recently Used) cache?",
-        "options": [
-          "Array",
-          "Binary Search Tree",
-          "Hash Table with Doubly Linked List",
-          "Stack"
-        ],
-        "correctAnswer": 2
-      },
-      {
-        "question": "What is the time complexity of the best known algorithm for multiplying two n-digit numbers?",
-        "options": [
-          "O(n)",
-          "O(n log n)",
-          "O(n^(log 3 / log 2))",
-          "O(n^2)"
-        ],
-        "correctAnswer": 2
-      },{
-        "question": "What is the time complexity of the Sieve of Eratosthenes algorithm for finding all prime numbers up to n?",
-        "options": [
-          "O(n)",
-          "O(n log log n)",
-          "O(n log n)",
-          "O(n^2)"
+          "High computational cost",
+          "Difficulty in combining different types of information effectively",
+          "Limited scalability",
+          "Poor user interface integration"
         ],
         "correctAnswer": 1
       },
       {
-        "question": "Which of the following is NOT a property of a Red-Black tree?",
+        "question": "In anomaly detection, what is the advantage of using a Gaussian Mixture Model over a single Gaussian distribution?",
         "options": [
-          "The root is always black",
-          "Every leaf (NIL) is black",
-          "If a node is red, then both its children are black",
-          "The tree is always perfectly balanced"
-        ],
-        "correctAnswer": 3
-      },
-      {
-        "question": "What is the primary purpose of the Held-Karp algorithm?",
-        "options": [
-          "To solve the Traveling Salesman Problem",
-          "To find the shortest path in a graph",
-          "To sort an array",
-          "To perform matrix multiplication"
-        ],
-        "correctAnswer": 0
-      },
-      {
-        "question": "Which of the following data structures is most efficient for implementing a priority queue with decrease-key operation?",
-        "options": [
-          "Binary Heap",
-          "Binomial Heap",
-          "Fibonacci Heap",
-          "AVL Tree"
-        ],
-        "correctAnswer": 2
-      },
-      {
-        "question": "What is the time complexity of the best known algorithm for integer factorization?",
-        "options": [
-          "O(n)",
-          "O(n log n)",
-          "O(exp((log n)^(1/3) * (log log n)^(2/3)))",
-          "O(2^n)"
-        ],
-        "correctAnswer": 2
-      },
-      {
-        "question": "Which of the following is NOT a typical application of the Fast Fourier Transform (FFT)?",
-        "options": [
-          "Digital signal processing",
-          "Polynomial multiplication",
-          "Image compression",
-          "Sorting algorithms"
-        ],
-        "correctAnswer": 3
-      },
-      {
-        "question": "What is the primary purpose of the Dinic's algorithm?",
-        "options": [
-          "To find the maximum flow in a flow network",
-          "To find the shortest path in a graph",
-          "To sort an array",
-          "To perform string matching"
-        ],
-        "correctAnswer": 0
-      },
-      {
-        "question": "Which of the following problems is in co-NP but not known to be in NP?",
-        "options": [
-          "Boolean Satisfiability (SAT)",
-          "Integer Factorization",
-          "Graph Isomorphism",
-          "Primality Testing"
+          "Lower computational complexity",
+          "Ability to model more complex data distributions",
+          "Better handling of missing values",
+          "Simpler parameter estimation"
         ],
         "correctAnswer": 1
       },
-      {
-        "question": "What is the primary advantage of using a van Emde Boas tree?",
-        "options": [
-          "O(log log u) time for insert, delete, and search operations",
-          "O(1) time for all operations",
-          "Guaranteed balance",
-          "Lower space complexity compared to binary search trees"
-        ],
-        "correctAnswer": 0
-      },
-      {
-        "question": "Which of the following is NOT a property of the A* search algorithm?",
-        "options": [
-          "It is complete",
-          "It is optimal if the heuristic is admissible",
-          "It expands all nodes in the search space",
-          "It uses both path cost and a heuristic estimate"
-        ],
-        "correctAnswer": 2
-      },
-      {
-        "question": "What is the primary purpose of the Burrows-Wheeler transform?",
-        "options": [
-          "To encrypt data",
-          "To compress data",
-          "To sort strings",
-          "To find the shortest path in a graph"
-        ],
-        "correctAnswer": 1
-      },
-      {
-        "question": "Which of the following is true about the relationship between NL and P?",
-        "options": [
-          "NL = P",
-          "NL ⊆ P",
-          "P ⊆ NL",
-          "NL and P are incomparable"
-        ],
-        "correctAnswer": 1
-      },
-      {
-        "question": "What is the time complexity of the best known algorithm for the 3SUM problem?",
-        "options": [
-          "O(n)",
-          "O(n log n)",
-          "O(n^2)",
-          "O(n^3)"
-        ],
-        "correctAnswer": 2
-      },
-      {
-        "question": "Which of the following data structures is most suitable for implementing an LFU (Least Frequently Used) cache?",
-        "options": [
-          "Array",
-          "Binary Search Tree",
-          "Hash Table with Doubly Linked List and Frequency Counter",
-          "Stack"
-        ],
-        "correctAnswer": 2
-      },
-      {
-        "question": "What is the primary purpose of the Johnson's algorithm?",
-        "options": [
-          "To find the shortest paths between all pairs of vertices in a sparse graph",
-          "To sort an array",
-          "To find the maximum flow in a network",
-          "To perform string matching"
-        ],
-        "correctAnswer": 0
-      },
-      {
-        "question": "Which of the following is NOT a property of a suffix tree?",
-        "options": [
-          "It can be constructed in O(n) time for a string of length n",
-          "It allows for O(m) time pattern matching for a pattern of length m",
-          "It requires O(n) space for a string of length n",
-          "It always has exactly n leaves for a string of length n"
-        ],
-        "correctAnswer": 3
-      },
-      {
-        "question": "What is the primary purpose of the Pollard's rho algorithm?",
-        "options": [
-          "To find prime factors of a number",
-          "To sort an array",
-          "To find the shortest path in a graph",
-          "To perform matrix multiplication"
-        ],
-        "correctAnswer": 0
-      },
-      {
-        "question": "Which of the following problems is known to be in BQP but not known to be in P?",
-        "options": [
-          "Integer Factorization",
-          "Graph Isomorphism",
-          "2-SAT",
-          "Linear Programming"
-        ],
-        "correctAnswer": 0
-      },
-      {
-        "question": "What is the primary advantage of using a Cuckoo hash table?",
-        "options": [
-          "O(1) worst-case lookup time",
-          "Lower space complexity compared to other hash tables",
-          "Simpler implementation",
-          "Guaranteed O(1) insertion time"
-        ],
-        "correctAnswer": 0
-      },
-      {
-        "question": "Which of the following is NOT a typical use case for the Hungarian algorithm?",
-        "options": [
-          "Assignment problem",
-          "Minimum cost perfect matching in bipartite graphs",
-          "Finding the shortest path in a graph",
-          "Maximum weight matching in bipartite graphs"
-        ],
-        "correctAnswer": 2
-      },
-      {
-        "question": "What is the time complexity of the best known algorithm for multiplying two n × n matrices?",
-        "options": [
-          "O(n^2)",
-          "O(n^2.37)",
-          "O(n^3)",
-          "O(n log n)"
-        ],
-        "correctAnswer": 1
-      },
-      {
-        "question": "Which of the following is NOT a property of a treap?",
-        "options": [
-          "It combines properties of binary search trees and heaps",
-          "It uses randomization for balancing",
-          "It guarantees O(log n) expected time for insert, delete, and search operations",
-          "It always maintains perfect balance"
-        ],
-        "correctAnswer": 3
-      },
-      {
-        "question": "What is the primary purpose of the Karger's algorithm?",
-        "options": [
-          "To find the minimum cut in an undirected graph",
-          "To sort an array",
-          "To find the shortest path in a graph",
-          "To perform string matching"
-        ],
-        "correctAnswer": 0
-      },
-      {
-        "question": "Which of the following problems is known to be PSPACE-complete?",
-        "options": [
-          "Boolean Satisfiability (SAT)",
-          "Traveling Salesman Problem",
-          "Quantified Boolean Formula (QBF)",
-          "3-Coloring"
-        ],
-        "correctAnswer": 2
-      },
-      {
-        "question": "What is the primary advantage of using a Fibonacci heap over a binary heap?",
-        "options": [
-          "O(1) amortized time for insert and decrease-key operations",
-          "Lower space complexity",
-          "Simpler implementation",
-          "Guaranteed O(1) time for all operations"
-        ],
-        "correctAnswer": 0
-      },
-      {
-        "question": "Which of the following is NOT a typical application of the Discrete Fourier Transform?",
-        "options": [
-          "Convolution",
-          "Filtering in signal processing",
-          "String matching",
-          "Multiplication of large integers"
-        ],
-        "correctAnswer": 2
-      },
-      {
-        "question": "What is the primary purpose of the Christofides algorithm?",
-        "options": [
-          "To find an approximate solution to the Traveling Salesman Problem",
-          "To sort an array",
-          "To find the shortest path in a graph",
-          "To perform matrix multiplication"
-        ],
-        "correctAnswer": 0
-      },
-      {
-        "question": "Which of the following data structures is most efficient for range minimum queries on a static array?",
-        "options": [
-          "Segment Tree",
-          "Fenwick Tree",
-          "Sparse Table",
-          "AVL Tree"
-        ],
-        "correctAnswer": 2
-      },
-      {
-        "question": "What is the time complexity of the best known algorithm for the Closest Pair of Points problem in 2D?",
-        "options": [
-          "O(n)",
-          "O(n log n)",
-          "O(n^2)",
-          "O(n^3)"
-        ],
-        "correctAnswer": 1
-      },
-      {
-        "question": "Which of the following is NOT a property of a Merkle tree?",
-        "options": [
-          "It is a binary tree",
-          "Leaf nodes contain the hash of data blocks",
-          "Non-leaf nodes contain the hash of their children",
-          "It guarantees O(1) time for verifying the integrity of data"
-        ],
-        "correctAnswer": 3
-      },
-      {
-        "question": "What is the primary purpose of the Coppersmith–Winograd algorithm?",
-        "options": [
-          "To multiply matrices faster than the naive O(n^3) algorithm",
-          "To sort an array",
-          "To find the shortest path in a graph",
-          "To perform string matching"
-        ],
-        "correctAnswer": 0
-      },
-      {
-        "question": "Which of the following problems is known to be in RP but not known to be in P?",
-        "options": [
-          "Primality Testing",
-          "Matrix Multiplication",
-          "Polynomial Identity Testing",
-          "2-SAT"
-        ],
-        "correctAnswer": 2
-      },
-      {
-        "question": "What is the primary advantage of using a skip list over a balanced binary search tree?",
-        "options": [
-          "Lower space complexity",
-          "Simpler implementation",
-          "Faster search operations",
-          "Guaranteed O(1) insertion time"
-        ],
-        "correctAnswer": 1
-      },
-      {
-        "question": "Which of the following is NOT a typical use case for the Levenberg–Marquardt algorithm?",
-        "options": [
-          "Non-linear least squares problems",
-          "Curve fitting",
-          "Finding the shortest path in a graph",
-          "Parameter estimation in machine learning models"
-        ],
-        "correctAnswer": 2
-      },
-      {
-        "question": "What is the time complexity of the best known algorithm for the Graph Isomorphism problem?",
-        "options": [
-          "O(n)",
-          "O(n log n)",
-          "2^(O(√(n log n)))",
-          "O(2^n)"
-        ],
-        "correctAnswer": 2
-      },
-      {
-        "question": "Which of the following data structures is most efficient for implementing a double-ended priority queue?",
-        "options": [
-          "Binary Heap",
-          "Binomial Heap",
-          "Min-Max Heap",
-          "AVL Tree"
-        ],
-        "correctAnswer": 2
-      },
-      {
-        "question": "What is the primary purpose of the Lempel-Ziv-Welch (LZW) algorithm?",
-        "options": [
-          "To compress data",
-          "To sort an array",
-          "To find the shortest path in a graph",
-          "To perform matrix multiplication"
-        ],
-        "correctAnswer": 0
-      },
-      {
-        "question": "Which of the following problems is known to be NP-hard but not known to be in NP?",
-        "options": [
-          "Traveling Salesman Problem",
-          "Boolean Satisfiability (SAT)",
-          "Clique Problem",
-          "Halting Problem"
-        ],
-        "correctAnswer": 3
-      }
-    ];
+
+        {
+          "question": "In the context of K-means clustering, what is the significance of the inertia metric plateauing in the elbow method?",
+          "options": [
+            "The algorithm has failed to converge",
+            "Additional clusters provide diminishing returns in explaining data variance",
+            "The data is not suitable for clustering",
+            "The initialization was poor"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "question": "When implementing Q-learning with function approximation, what is the purpose of Double Q-learning?",
+          "options": [
+            "To double the learning speed",
+            "To reduce overestimation bias in action values",
+            "To increase exploration efficiency",
+            "To handle continuous action spaces"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "question": "In collaborative filtering, what is the 'long tail' problem?",
+          "options": [
+            "Computational complexity with large datasets",
+            "Difficulty in recommending niche items with few ratings",
+            "Users with unusual preferences",
+            "System scalability issues"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "question": "What is the key advantage of using UMAP over t-SNE for dimensionality reduction in clustering?",
+          "options": [
+            "Better preservation of global structure",
+            "Faster computation time",
+            "Simpler implementation",
+            "Lower memory requirements"
+          ],
+          "correctAnswer": 0
+        },
+        {
+          "question": "In reinforcement learning, what is the purpose of hierarchical reinforcement learning (HRL)?",
+          "options": [
+            "To reduce memory usage",
+            "To break down complex tasks into simpler subtasks",
+            "To improve exploration efficiency",
+            "To speed up training"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "question": "What is the main limitation of the Davies-Bouldin Index when evaluating clustering quality?",
+          "options": [
+            "High computational cost",
+            "Sensitivity to cluster shape and density variations",
+            "Requirement for true labels",
+            "Limited scalability"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "question": "In the context of recommender systems, what is the 'filter bubble' effect?",
+          "options": [
+            "A technical limitation of filtering algorithms",
+            "Users being increasingly exposed to similar content, limiting diversity",
+            "A method for removing noise from recommendations",
+            "A way to improve recommendation accuracy"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "question": "What is the primary difference between Monte Carlo and Temporal Difference learning in reinforcement learning?",
+          "options": [
+            "Computational efficiency",
+            "Memory requirements",
+            "When learning updates occur (episode end vs. each step)",
+            "Exploration strategy"
+          ],
+          "correctAnswer": 2
+        },
+        {
+          "question": "In DBSCAN clustering, what is the relationship between epsilon (ε) and minPoints parameters?",
+          "options": [
+            "They are independent",
+            "Larger ε requires larger minPoints for meaningful clusters",
+            "They must be equal",
+            "They are inversely proportional"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "question": "What is the main challenge in implementing deep reinforcement learning with sparse rewards?",
+          "options": [
+            "High memory usage",
+            "Difficulty in credit assignment and exploration",
+            "Slow convergence",
+            "Model complexity"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "question": "In the context of clustering metrics, why might the Calinski-Harabasz Index be preferred over the Silhouette Score?",
+          "options": [
+            "Lower computational complexity",
+            "Better handling of high-dimensional data",
+            "More interpretable results",
+            "Support for non-spherical clusters"
+          ],
+          "correctAnswer": 0
+        },
+        {
+          "question": "What is the primary purpose of curriculum learning in reinforcement learning?",
+          "options": [
+            "To reduce memory requirements",
+            "To gradually increase task difficulty for better learning",
+            "To improve computational efficiency",
+            "To handle continuous action spaces"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "question": "In recommender systems, what is the main advantage of using attention mechanisms?",
+          "options": [
+            "Reduced computation time",
+            "Better capture of user-item interaction patterns",
+            "Lower memory requirements",
+            "Simpler implementation"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "question": "What is the key difference between spectral clustering and K-means?",
+          "options": [
+            "Computational complexity",
+            "Ability to find non-spherical clusters",
+            "Number of parameters",
+            "Initialization requirements"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "question": "In reinforcement learning, what is the purpose of prioritized experience replay?",
+          "options": [
+            "To reduce memory usage",
+            "To sample more important transitions more frequently",
+            "To improve exploration",
+            "To speed up convergence"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "question": "What is the main challenge in implementing multi-armed bandits with non-stationary rewards?",
+          "options": [
+            "High computational cost",
+            "Balancing exploration and adaptation to changing rewards",
+            "Memory requirements",
+            "Algorithm complexity"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "question": "In clustering, what is the purpose of the Hopkins statistic?",
+          "options": [
+            "To determine the optimal number of clusters",
+            "To measure the clustering tendency of the data",
+            "To evaluate cluster quality",
+            "To compare different clustering algorithms"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "question": "What is the primary advantage of using Thompson Sampling in reinforcement learning?",
+          "options": [
+            "Guaranteed convergence",
+            "Better exploration-exploitation balance",
+            "Lower computational cost",
+            "Simpler implementation"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "question": "In recommender systems, what is the purpose of negative sampling?",
+          "options": [
+            "To improve recommendation diversity",
+            "To reduce computational cost in training",
+            "To handle missing data",
+            "To increase model accuracy"
+          ],
+          "correctAnswer": 1
+        },
+        {
+          "question": "What is the main advantage of using Wasserstein distance in clustering compared to Euclidean distance?",
+          "options": [
+            "Lower computational cost",
+            "Better handling of distributions and probability masses",
+            "Simpler implementation",
+            "More interpretable results"
+          ],
+          "correctAnswer": 1
+        },
+          {
+            "question": "In the context of reinforcement learning with continuous action spaces, what is the primary advantage of using the DDPG (Deep Deterministic Policy Gradient) algorithm?",
+            "options": [
+              "Lower memory requirements",
+              "Ability to learn deterministic policies in continuous action spaces",
+              "Faster convergence in discrete action spaces",
+              "Simpler implementation than DQN"
+            ],
+            "correctAnswer": 1
+          },
+          {
+            "question": "When using agglomerative clustering, what is the theoretical time complexity with complete linkage?",
+            "options": [
+              "O(n)",
+              "O(n log n)",
+              "O(n²)",
+              "O(n³)"
+            ],
+            "correctAnswer": 3
+          },
+          {
+            "question": "In recommender systems, what is the primary purpose of implementing self-attention mechanisms?",
+            "options": [
+              "To reduce computational complexity",
+              "To capture sequential patterns in user behavior",
+              "To handle missing data",
+              "To normalize user ratings"
+            ],
+            "correctAnswer": 1
+          },
+          {
+            "question": "What is the key difference between the Dunn Index and the Davies-Bouldin Index for cluster validation?",
+            "options": [
+              "Computational complexity",
+              "Dunn Index maximizes for better clustering while Davies-Bouldin minimizes",
+              "Handling of outliers",
+              "Required number of clusters"
+            ],
+            "correctAnswer": 1
+          },
+          {
+            "question": "In Q-learning, what is the primary purpose of implementing a Dueling Network Architecture?",
+            "options": [
+              "To improve exploration efficiency",
+              "To separate state value and advantage estimation",
+              "To reduce memory requirements",
+              "To handle continuous action spaces"
+            ],
+            "correctAnswer": 1
+          },
+          {
+            "question": "What is the main advantage of using Gaussian Mixture Models over K-means for clustering?",
+            "options": [
+              "Lower computational cost",
+              "Ability to model clusters with different shapes and sizes",
+              "Simpler parameter tuning",
+              "Better handling of categorical data"
+            ],
+            "correctAnswer": 1
+          },
+          {
+            "question": "In reinforcement learning, what is the primary challenge of implementing Hindsight Experience Replay (HER)?",
+            "options": [
+              "High memory requirements",
+              "Complex goal relabeling strategy",
+              "Slow convergence",
+              "Limited applicability"
+            ],
+            "correctAnswer": 1
+          },
+          {
+            "question": "What is the main limitation of using the Adjusted Mutual Information (AMI) score for clustering evaluation?",
+            "options": [
+              "High computational cost",
+              "Requirement for ground truth labels",
+              "Sensitivity to noise",
+              "Limited range of values"
+            ],
+            "correctAnswer": 1
+          },
+          {
+            "question": "In collaborative filtering, what is the primary purpose of implementing dropout in neural network-based approaches?",
+            "options": [
+              "To speed up training",
+              "To prevent overfitting and improve generalization",
+              "To handle missing values",
+              "To reduce model complexity"
+            ],
+            "correctAnswer": 1
+          },
+          {
+            "question": "What is the key advantage of using Proximal Policy Optimization (PPO) over traditional policy gradient methods?",
+            "options": [
+              "Lower memory usage",
+              "More stable training through constrained policy updates",
+              "Faster convergence in all cases",
+              "Simpler implementation"
+            ],
+            "correctAnswer": 1
+          },
+          {
+            "question": "In HDBSCAN clustering, what is the main improvement over traditional DBSCAN?",
+            "options": [
+              "Lower computational complexity",
+              "Ability to find clusters of varying density",
+              "Simpler parameter tuning",
+              "Better handling of categorical data"
+            ],
+            "correctAnswer": 1
+          },
+          {
+            "question": "What is the primary purpose of implementing cross-entropy in clustering objective functions?",
+            "options": [
+              "To reduce computational cost",
+              "To measure the quality of soft clustering assignments",
+              "To handle missing data",
+              "To normalize cluster sizes"
+            ],
+            "correctAnswer": 1
+          },
+          {
+            "question": "In reinforcement learning, what is the main advantage of using the Retrace(λ) algorithm?",
+            "options": [
+              "Faster convergence",
+              "More efficient off-policy learning with safety guarantees",
+              "Lower memory requirements",
+              "Simpler implementation"
+            ],
+            "correctAnswer": 1
+          },
+          {
+            "question": "What is the key benefit of using t-distributed Stochastic Neighbor Embedding (t-SNE) in clustering visualization?",
+            "options": [
+              "Linear computational complexity",
+              "Better preservation of local structure in low dimensions",
+              "Guaranteed global optimum",
+              "Handling of categorical data"
+            ],
+            "correctAnswer": 1
+          },
+          {
+            "question": "In recommender systems, what is the primary purpose of implementing attention mechanisms with self-attention?",
+            "options": [
+              "To reduce computation time",
+              "To capture dynamic user-item relationships",
+              "To handle missing data",
+              "To normalize ratings"
+            ],
+            "correctAnswer": 1
+          },
+          {
+            "question": "What is the main advantage of using Soft Actor-Critic (SAC) in reinforcement learning?",
+            "options": [
+              "Simpler implementation",
+              "Maximum entropy framework for exploration and stability",
+              "Lower memory requirements",
+              "Faster convergence in all cases"
+            ],
+            "correctAnswer": 1
+          },
+          {
+            "question": "In clustering, what is the primary purpose of the silhouette analysis?",
+            "options": [
+              "To determine cluster centers",
+              "To evaluate how well each object fits within its cluster",
+              "To handle missing data",
+              "To normalize feature scales"
+            ],
+            "correctAnswer": 1
+          },
+          {
+            "question": "What is the main advantage of using Wasserstein GAN for anomaly detection?",
+            "options": [
+              "Lower computational cost",
+              "More stable training and better convergence properties",
+              "Simpler implementation",
+              "Guaranteed optimal solutions"
+            ],
+            "correctAnswer": 1
+          },
+          {
+            "question": "In reinforcement learning, what is the primary purpose of implementing curiosity-driven exploration?",
+            "options": [
+              "To reduce memory usage",
+              "To encourage exploration of novel states",
+              "To speed up training",
+              "To simplify the reward function"
+            ],
+            "correctAnswer": 1
+          },
+          {
+            "question": "What is the key advantage of using Variational Autoencoders (VAEs) for clustering?",
+            "options": [
+              "Lower computational cost",
+              "Ability to learn meaningful latent representations",
+              "Simpler implementation",
+              "Better handling of categorical data"
+            ],
+            "correctAnswer": 1
+          }
+        
+      
+    
+  
+]
+    
+    ;
 
 const MCQTest = () => {
   const [questions, setQuestions] = useState([]);
